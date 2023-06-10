@@ -150,11 +150,13 @@ int main() {
 	cout << "inc(number) 结果是：" << inc(number) << endl;
 	cout << "inc(1) 结果是：" << inc(1) << endl;
 
-	// 类
+
+	// 类 
 	Circle c1;
 	c1.r = 10;
 	cout << "周长是：" << c1.getPerimeter() << endl;
 	cout << "面积是：" << c1.getArea() << endl;
+
 
 
 	return 0;
