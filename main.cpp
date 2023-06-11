@@ -4,7 +4,14 @@ using namespace std;
 #include "struct.h"
 #include "array.h"
 #include "method.h"
-#include "Circle.h"
+#include "class.h"
+
+
+void test1();
+void test2(Person p);
+Person test3();
+void test4();
+void test5();
 
 int main() {
 
@@ -156,8 +163,66 @@ int main() {
 	c1.r = 10;
 	cout << "周长是：" << c1.getPerimeter() << endl;
 	cout << "面积是：" << c1.getArea() << endl;
+	// 测试析构函数
+	test1();
+	
+	
+	// 测试拷贝构造
+	// 四种构造方式的写法
+	Person per1; // 默认无参构造
+	Person per2("张三", 18); // 常用
+	Person per3 = Person("李四", 18);  // 偶尔用
+	Person per4 = 22;   //  别用
+	per3.print();
+	Person per5(per3);
+	per5.print();
+	// 值传递方式给函数参数传值
+	cout << "------------------------------" << endl;
+	cout << "地址是：" << &per2 << endl;
+	test2(per2);
+	cout << "----------------test3--------------" << endl;
+	Person per7 = test3();
+	cout << "----------------test4--------------" << endl;
+	test4();
+	cout << "--------------test5----------------" << endl;
+	 // vs2022 这里不会调用拷贝代码，但是老版本会
+	test5();
 
 
 
+
+	cout << "------------------------------" << endl;
 	return 0;
+}
+
+
+
+void test1() {
+	Person per1; // 默认无参构造
+
+}
+
+void test2(Person per) {
+	cout << "地址是：" << &per << endl;
+	per.print();
+}
+
+void test4() {
+	Person per1("caber", 27);
+	test2(per1);
+
+}
+
+Person test3() {
+
+	Person per1("caber", 27);
+	cout << "地址是：" << &per1 << endl;
+	return per1;
+}
+
+
+void test5() {
+	Person per1 = test3();
+	cout << "地址是：" << &per1 << endl;
+	per1.print();
 }

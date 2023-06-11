@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="array.cpp" />
-    <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="class.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="method.cpp" />
     <ClCompile Include="point.cpp" />
@@ -136,7 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="array.h" />
-    <ClInclude Include="Circle.h" />
+    <ClInclude Include="class.h" />
     <ClInclude Include="method.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="struct.h" />
