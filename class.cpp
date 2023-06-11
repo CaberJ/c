@@ -19,10 +19,6 @@ Person::Person() {
 	cout << "默认无参构造函数" << endl;
 }
 
-Person::~Person() {
-	cout << "默认析构函数" << endl;
-
-}
 
 
 Person::Person(string name, int age) {
@@ -44,4 +40,8 @@ Person::Person(const Person& p) {
 	p_age = p.p_age;
 	
 }
+void Person::setAge(int age) {
+	p_age = age;
+}
+
 

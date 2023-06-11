@@ -12,6 +12,10 @@ void test2(Person p);
 Person test3();
 void test4();
 void test5();
+void test6();
+void test7();
+void test8();
+void test9();
 
 int main() {
 
@@ -169,6 +173,12 @@ int main() {
 	
 	// 测试拷贝构造
 	// 四种构造方式的写法
+	// 默认提供无参构造，析构函数，拷贝构造
+	// 自实现了普通构造，则不会提供无参构造，但是会提供默认的拷贝构造
+	// 自实现了拷贝构造，则不会提供其他构造函数
+	// 默认拷贝函数是浅拷贝
+	//浅克隆：创建一个新对象，新对象的属性和原来对象完全相同，对于非基本类型属性，仍指向原有属性所指向的对象的内存地址。
+	//深克隆：创建一个新对象，属性中引用的其他对象也会被克隆，不再指向原有对象地址。
 	Person per1; // 默认无参构造
 	Person per2("张三", 18); // 常用
 	Person per3 = Person("李四", 18);  // 偶尔用
@@ -187,9 +197,26 @@ int main() {
 	cout << "--------------test5----------------" << endl;
 	 // vs2022 这里不会调用拷贝代码，但是老版本会
 	test5();
+	cout << "------------------------------" << endl;
+	// 深拷贝   浅拷贝
+	Person per8("李白", 12);
+	Person per9(per8);
 
+	per9.setAge(1);
+	per8.print();
+	per9.print();
 
-
+	cout << (int*)&per8 << endl;
+	cout << (int*)&per9 << endl;
+	cout << "------------------------------" << endl;
+	test6();
+	cout << "------------------------------" << endl;
+	// 初始化列表
+	test7();
+	cout << "------------------------------" << endl;
+	test8();
+	cout << "------------------------------" << endl;
+	test9();
 
 	cout << "------------------------------" << endl;
 	return 0;
@@ -222,7 +249,39 @@ Person test3() {
 
 
 void test5() {
+
 	Person per1 = test3();
 	cout << "地址是：" << &per1 << endl;
 	per1.print();
+}
+
+void test6() {
+
+	Student stu1(1,2);
+	cout << "年龄是："<< stu1.s_age << ",身高是："<< *stu1.s_height <<  endl;
+	Student stu2(stu1);
+	cout << "年龄是：" << stu2.s_age << ",身高是：" << *stu2.s_height <<  endl;
+
+}
+void test7() {
+	// 初始化列表
+	Phone pho1(1,2,3);
+	//Phone pho1;
+
+	pho1.show();
+
+}
+
+void test8() {
+	// 初始化列表
+	Phone pho1(1, 2, 3);
+	//Phone pho1;
+	Teacher tea1("张三", pho1);
+	tea1.show();
+	
+}
+
+void test9() {
+	Teacher tea2("lisi", 11, 22, 33);
+	tea2.show();
 }
