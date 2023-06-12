@@ -130,3 +130,34 @@ public:
 
 };
 
+class Tea {
+
+private:
+	string t_name;
+	string t_color;
+
+	// 静态成员变量
+	static int t_a;
+
+public:
+
+	// 静态成员变量
+	static int t_b;
+
+	int getA() {
+		return t_a;
+	}
+
+	void setA(int a) {
+		t_a = a;
+	}
+
+	Tea(string name, string color) :t_name(name), t_color(color) {
+	}
+
+	// 静态成员函数
+	static void drink();
+};
+
+
+

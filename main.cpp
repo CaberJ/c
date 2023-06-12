@@ -6,7 +6,10 @@ using namespace std;
 #include "method.h"
 #include "class.h"
 
+// 函数声明区
 
+void swap(int&, int&);
+void swap1(int, int);
 void test1();
 void test2(Person p);
 Person test3();
@@ -18,6 +21,49 @@ void test8();
 void test9();
 
 int main() {
+
+	// 输出
+	cout << "Hello World!\n" << endl;
+	// 参数定义
+	int a = 1;
+	int b = 2;
+
+	// 测试指针
+	int * ap;
+	ap = &a;
+
+	int * bp;
+	bp = &b;
+
+	// 输出在指针变量中存储的地址
+	cout << "指针变量存储的地址：" << ap << endl;
+	// 输出指针的值
+	cout << "指针的值:" << *ap << endl;
+
+	// 常量指针   指针指向的值不能改
+	const int* p1 = &a;
+	//*p1 = &b;  错误
+
+	// 指针常量    指针指向的地址不能改
+	int* const p2 = &a;
+	//p2 = &b;    错误
+
+	// const 修饰指针和常量
+	const int* const p3 = &a;
+	//p3 = &b;  错误
+	//*p3 = b;  错误
+
+	// 测试引用  
+	//  结论： c++ 默认为值传递； 使用引用可以将方法调用改为引用传递
+	swap1(a, b);
+	cout << "未使用引用交换a=" << a << endl;
+	cout << "未使用引用交换b=" << b << endl;
+	
+	int& ar = a;
+	cout << "测试引用：" << ar << endl;
+	swap(a, b);
+	cout << "使用引用交换a=" << a << endl;
+	cout << "使用引用交换b=" << b << endl;
 
 	// 数组
 	int arr1[4] = { 1,2,3,4 };
@@ -35,39 +81,10 @@ int main() {
 	cout << "二维数组首地址int：" << (int)arr3 << endl;
 	cout << "二维数组首地址：" << arr3 << endl;
 
-
-
-	int a = 1;
-	int b = 2;
-	//swap(a, b);
-	//cout << "a = " << a << endl;
-	//cout << "b = " << b << endl;
-
-	swap1(&a, &b);
-	cout << "a = " << a << endl;
-	cout << "b = " << b << endl;
-
-	//swap2(&a, &b);
-	//cout << "a = " << a << endl;
-	//cout << "b = " << b << endl;
-
-	// 常量指针   指针指向的值不能改
-	const int* p1 = &a;
-	//*p1 = &b;  错误
-
-	// 指针常量    指针指向的地址不能改
-	int* const p2 = &a;
-	//p2 = &b;    错误
-
-	// const 修饰指针和常量
-	const int* const p3 = &a;
-	//p3 = &b;  错误
-	//*p3 = b;  错误
-
 	// 指针操作数组
 	int c[] = { 1,2,3,4,5,6,7,8,9 };
 
-	// p4 位数组首个元素的地址
+	// p4 为数组首个元素的地址
 	int* p4 = c;
 	for (int i = 0; i < 9; i++) {
 		cout << "c[i]= " << *p4 << endl;
@@ -217,12 +234,43 @@ int main() {
 	test8();
 	cout << "------------------------------" << endl;
 	test9();
+	cout << "------------------------------" << endl;
+	// 测试类的静态成员
+	Tea te1("红茶", "红");
+	cout << "te1.a = " << te1.getA() << endl;
+	cout << "修改a" << endl;
+	te1.setA(2);
+	Tea te2("绿茶", "绿");
+	cout << "te1.a = " << te2.getA() << endl;
+	cout << "te1.a = " << te1.getA() << endl;
+	cout << "te1.b = " << Tea::t_b << endl;
+	Tea::t_b = 2;
+	cout << "te1.b = " << Tea::t_b << endl;
+	//Tea::t_a = 2;   // 错误，私有权限，类外不能访问
+	// cout << "----------------静态成员函数--------------" << endl;
+	// 静态成员函数，可以使用对象调用，也可以使用类调用
+	// 静态成员函数只能访问静态成员变量
+	te1.drink();
+	Tea::drink();
 
 	cout << "------------------------------" << endl;
 	return 0;
 }
 
-
+void swap(int& a, int& b)
+{
+	int tmp;
+	tmp = a;
+	a = b;
+	b = tmp;
+	return;
+}
+void swap1(int a, int b) {
+	int tmp;
+	tmp = a;
+	a = b;
+	b = tmp;
+}
 
 void test1() {
 	Person per1; // 默认无参构造

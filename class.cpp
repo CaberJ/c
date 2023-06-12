@@ -45,3 +45,9 @@ void Person::setAge(int age) {
 }
 
 
+int Tea::t_a = 1;
+int Tea::t_b = 2;
+
+void Tea::drink() {
+	cout << "ÎÒÔÚºÈ²è£º a="<<t_a<<",b="<< t_b << endl;
+}
