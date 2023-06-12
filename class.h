@@ -161,3 +161,20 @@ public:
 
 
 
+class Hand {
+private:
+	int size;
+public:
+	
+	void addSize(int size);
+
+	int getSize();
+
+	Hand addHandSize(Hand hand);
+	Hand& addHandSize1(Hand hand);
+	Hand& addHandSize2(Hand & hand);
+
+	Hand(int size):size(size) {}
+
+	Hand(const Hand & hand);
+};

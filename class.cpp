@@ -51,3 +51,34 @@ int Tea::t_b = 2;
 void Tea::drink() {
 	cout << "我在喝茶： a="<<t_a<<",b="<< t_b << endl;
 }
+
+void Hand::addSize(int size) {
+	this->size += size;
+}
+
+int Hand::getSize() {
+	return this->size;
+}
+
+Hand Hand::addHandSize(Hand hand) {
+	this->size += hand.getSize();
+	cout << "当前对象地址是：" << (int*)this <<"，size是："<< this->size << endl;
+	return *this;
+}
+
+Hand& Hand::addHandSize1(Hand hand) {
+	this->size += hand.getSize();
+	cout << "当前对象地址是：" << (int*)this << "，size是：" << this->size << endl;
+	return *this;
+}
+Hand& Hand::addHandSize2(Hand & hand) {
+	this->size += hand.getSize();
+	cout << "当前对象地址是：" << (int*)this << "，size是：" << this->size << endl;
+	return *this;
+}
+
+
+Hand::Hand(const Hand& hand) {
+	cout << "Hand 拷贝函数执行" << endl;
+	size = hand.size;
+}

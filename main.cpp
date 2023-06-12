@@ -19,6 +19,7 @@ void test6();
 void test7();
 void test8();
 void test9();
+void test10();
 
 int main() {
 
@@ -254,6 +255,8 @@ int main() {
 	Tea::drink();
 
 	cout << "------------------------------" << endl;
+	test10();
+	cout << "------------------------------" << endl;
 	return 0;
 }
 
@@ -332,4 +335,38 @@ void test8() {
 void test9() {
 	Teacher tea2("lisi", 11, 22, 33);
 	tea2.show();
+}
+
+void test10() {
+	Hand han1(5);
+	Hand han2(10);
+	Hand han3(10);
+	Hand han4(10);
+	Hand han5(10);
+	han1.addSize(5);
+	cout << "han1 size = " << han1.getSize() << endl;
+
+    Hand aa = han2.addHandSize(han1).addHandSize(han1).addHandSize(han1);
+	cout << "han2 size = " << han2.getSize() << endl;
+	cout << "han2 地址 = " << &han2 << endl;
+	cout << "aa size = " << aa.getSize() << endl;
+	cout << "aa 地址 = " << &aa << endl;
+	cout << "---------------------------- "  << endl;
+	Hand bb = han3.addHandSize1(han1).addHandSize1(han1).addHandSize1(han1);
+	cout << "han3 size = " << han3.getSize() << endl;
+	cout << "han3 地址 = " << &han3 << endl;
+	cout << "bb size = " << bb.getSize() << endl;
+	cout << "bb 地址 = " << &bb << endl;
+	cout << "---------------------------- " << endl;
+	Hand cc = han4.addHandSize2(han1).addHandSize2(han1).addHandSize2(han1);
+	cout << "han4 size = " << han4.getSize() << endl;
+	cout << "han4 地址 = " << &han4 << endl;
+	cout << "cc size = " << cc.getSize() << endl;
+	cout << "cc 地址 = " << &cc << endl;
+	cout << "---------------------------- " << endl;
+	Hand& dd = han5.addHandSize2(han1).addHandSize2(han1).addHandSize2(han1);
+	cout << "han5 size = " << han5.getSize() << endl;
+	cout << "han5 地址 = " << &han5 << endl;
+	cout << "dd size = " << dd.getSize() << endl;
+	cout << "dd 地址 = " << &dd << endl;
 }
