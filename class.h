@@ -62,6 +62,7 @@ public:
 	// 深拷贝
 	Student(const Student & stu) {
 		s_age = stu.s_age;
+		// 如果不利用深拷贝在堆区创建新内存，则会出现堆内存重复释放的问题
 		s_height = new int(*stu.s_height);
 	}
 };
@@ -96,6 +97,7 @@ public:
 	
 };
 
+// 对象作为对象属性
 class Teacher {
 private:
 	string t_name;
@@ -130,6 +132,7 @@ public:
 
 };
 
+// 静态
 class Tea {
 
 private:
@@ -160,7 +163,7 @@ public:
 };
 
 
-
+// this指针使用
 class Hand {
 private:
 	int size;
@@ -178,3 +181,57 @@ public:
 
 	Hand(const Hand & hand);
 };
+
+// 空指针调用成员函数
+class Clazz1 {
+
+public:
+	int age;
+
+	void showClazzName();
+	void show();
+};
+
+//  常函数，  常对象
+class Clazz2 {
+
+private:
+	int a;
+	int b;
+	mutable	int d;
+
+public:
+	Clazz2() {
+		a = 0;
+		b = 0;
+		int c = 0;
+		d = 0;
+	}
+	void show1() {
+
+		// this 相当于  ClassType * const point   指针常量
+		// 空指针可以调用成员函数，此时 空指针相当于  Class Type* const point = NULL
+
+
+		this->a = 1;
+		cout << "a =  " << a << ",b =  " << b <<  ",d =  " << d << endl;
+	
+	}
+
+	// 常函数
+	void show2() const {
+		// this  指针本质是一个指针常量，this 指向的地址，也就是对象本身的地址不能改，但是对象的值可以改
+		// 如果想让this 指针指向的值（内容）也不能改，需要使用常函数
+		// 相当于 const ClassType * const point 
+
+
+		//this->a = 1;   错误  常函数不能修改成员属性
+		this->d = 1;   // 成员属性 d 被 mutable关键字修饰，可以在常函数中修改
+		cout << "a =  " << a << ",b =  " << b << ",d =  " << d << endl;
+	}
+	
+
+};
+
+
+

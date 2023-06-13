@@ -20,6 +20,8 @@ void test7();
 void test8();
 void test9();
 void test10();
+void test11();
+void test12();
 
 int main() {
 
@@ -226,7 +228,8 @@ int main() {
 
 	cout << (int*)&per8 << endl;
 	cout << (int*)&per9 << endl;
-	cout << "------------------------------" << endl;
+	cout << "-------------深拷贝   浅拷贝-----------------" << endl;
+	// 如果时在堆区创建了成员属性，一定要重写拷贝构造函数
 	test6();
 	cout << "------------------------------" << endl;
 	// 初始化列表
@@ -257,6 +260,10 @@ int main() {
 	cout << "------------------------------" << endl;
 	// this指针 
 	test10();
+	cout << "------------------------------" << endl;
+	test11();
+	cout << "-------------test12------------" << endl;
+	test12();
 	cout << "------------------------------" << endl;
 	return 0;
 }
@@ -370,4 +377,31 @@ void test10() {
 	cout << "han5 地址 = " << &han5 << endl;
 	cout << "dd size = " << dd.getSize() << endl;
 	cout << "dd 地址 = " << &dd << endl;
+}
+
+void test11() {
+	Clazz1* cla11 = NULL;
+	// 相当于 Clazz1 * const p1 = NULL;
+	cla11->showClazzName();
+	cla11->show();
+	// 上面两行代码，等同于下面的代码
+	cout << "-------------等同于--------------- " << endl;
+	Clazz1 * const cla12 = NULL;
+	cla12->showClazzName();
+	cla12->show();
+
+
+}
+
+void test12() {
+	// this  指针本质是一个指针常量，this 指向的地址，也就是对象本身的地址不能改，但是对象的值可以改
+	// 如果想让this 指针指向的值也不能改，需要使用常函数
+	Clazz2 cla21;
+	cla21.show1();
+	cout << "------------" << endl;
+	cla21.show2();
+	cout << "------常对象------" << endl;
+	const Clazz2 cla22;
+	// cla22.show1();  错误， 常对象只能调用常函数
+	cla22.show2();
 }

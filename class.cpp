@@ -82,3 +82,14 @@ Hand::Hand(const Hand& hand) {
 	cout << "Hand 拷贝函数执行" << endl;
 	size = hand.size;
 }
+
+void Clazz1::showClazzName() {
+	cout << "我是Clazz1" << endl;
+}
+
+void Clazz1::show() {
+	if (this == NULL) {
+		return;
+	}
+	cout << "年领是：" << age << endl;
+}
