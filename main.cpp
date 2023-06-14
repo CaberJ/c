@@ -22,6 +22,9 @@ void test9();
 void test10();
 void test11();
 void test12();
+void test13();
+void test14();
+void test15();
 
 int main() {
 
@@ -264,6 +267,12 @@ int main() {
 	test11();
 	cout << "-------------test12------------" << endl;
 	test12();
+	cout << "---------------test13---------------" << endl;
+	test13();
+	cout << "-----------------test14-------------" << endl;
+	test14();
+	cout << "-------------------test15-----------" << endl;
+	test15();
 	cout << "------------------------------" << endl;
 	return 0;
 }
@@ -305,7 +314,6 @@ Person test3() {
 	cout << "地址是：" << &per1 << endl;
 	return per1;
 }
-
 
 void test5() {
 
@@ -407,5 +415,41 @@ void test12() {
 }
 
 
+// 全局函数做友元
+void test13() {
+	Clazz3 cla31;
+
+	globalFun01(cla31);
+	globalFun02(cla31);
+	globalFun03(&cla31);
+
+}
+
+void globalFun01(Clazz3& cla) {
+	cout << "友元全局方法-访问私有属性 (引用)：cla age = " << cla.age << ",name" << cla.name << endl;
+}
+void globalFun02(Clazz3 cla) {
+	cout << "友元全局方法-访问私有属性：cla age = " << cla.age << ",name" << cla.name << endl;
+}
+void globalFun03(Clazz3 * cla) {
+	cout << "友元全局方法-访问私有属性（指针）：cla age = " << cla->age << ",name" << cla->name << endl;
+}
+
+// 类做友元
+void test14() {
+	Clazz4 cla41;
+	Clazz3 cla31;
+	cla41.showPrivate1();
+	cla41.showPrivate2(cla31);
+	cla31.showAge();
+}
 
 
+// 成员函数做友元
+void test15() {
+
+	Clazz3 cla31;
+	Clazz5 cla51;
+	cla51.clazz5Fun(cla31);
+
+}

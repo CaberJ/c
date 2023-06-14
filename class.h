@@ -233,5 +233,50 @@ public:
 
 };
 
+// 友元   友元可以访问对象的私有属性
+// 全局函数做友元
+class Clazz3;
+void globalFun01(Clazz3& cla);
+void globalFun02(Clazz3 cla);
+void globalFun03(Clazz3* cla);
 
+// 成员函数做友元
+class Clazz5 {
+public:
+	void clazz5Fun(Clazz3& cla);
+};
+
+class Clazz3 {
+
+	friend void globalFun01(Clazz3& cla);
+	friend void globalFun02(Clazz3 cla);
+	friend void globalFun03(Clazz3* cla);
+	friend class Clazz4;
+	friend void Clazz5::clazz5Fun(Clazz3& cla);
+
+private:
+	int age;
+	string name;
+public:
+	Clazz3() {
+		age = 0;
+		name = "私有领域";
+	}
+
+	void showAge();
+
+};
+
+// 类做友元
+class Clazz4 {
+public:
+	Clazz3 cla3;
+	Clazz4() {
+		cla3 = Clazz3();
+	}
+
+	void showPrivate1();
+
+	void showPrivate2(Clazz3 & cla3);
+};
 

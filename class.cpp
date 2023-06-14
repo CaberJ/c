@@ -93,3 +93,22 @@ void Clazz1::show() {
 	}
 	cout << "年领是：" << age << endl;
 }
+
+void Clazz3::showAge() {
+	cout << "Clazz3 age是：" << age << endl;
+}
+
+void Clazz4::showPrivate1() {
+	cout << "友元类-访问私有属性：cla3 age = " << cla3.age << ",name" << cla3.name << endl;
+}
+
+void Clazz4::showPrivate2(Clazz3 & cla) {
+	cla.age = 10;
+	cout << "友元类-访问私有属性：cla3 age = " << cla.age << ",name" << cla.name << endl;
+}	
+
+
+void Clazz5::clazz5Fun(Clazz3& cla) {
+	cout << "友元成员函数-访问私有属性：cla3 age = " << cla.age << ",name" << cla.name << endl;
+}
+
