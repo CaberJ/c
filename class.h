@@ -280,3 +280,80 @@ public:
 	void showPrivate2(Clazz3 & cla3);
 };
 
+
+class Number {
+
+public:
+	int a;
+	double b;
+
+	Number() {};
+	Number(int a, double b) :a(a), b(b) {}
+
+	//Number operator+(Number& number) {
+	//	this->a += number.a;
+	//	this->b += number.b;
+	//	return *this;
+	//}
+
+	void show() {
+		cout << " Number :a =" << a << ",b= " << b << endl;
+	}
+	// ++ 重载  先+ 后用
+	Number& operator++() {
+		a++;
+		return *this;
+	}
+
+	// ++ 重载，先用后+
+	Number operator++ (int) {
+		cout <<"this:" << this << endl;
+		Number tmp = *this;
+		a++;
+		cout << "tmp:" << &tmp << endl;
+		cout << "tmp.a:" << tmp.a << endl;
+		return tmp;
+	}
+	
+	
+};
+
+//c++编译器至少给一个类添加4个函数
+//1. 默认构造函数(无参，函数体为空)
+//2. 默认析构函数(无参，函数体为空)
+//3. 默认拷贝构造函数，对属性进行值拷贝
+//4. 赋值运算符 operator=, 对属性进行值拷贝
+
+class Tree {
+
+	//friend ostream& operator<<(ostream& out, Tree& tree);
+private:
+	string color;
+	int high;
+	int* diameter;
+
+public:
+	Tree() {};
+	Tree(string color,int high):color(color),high(high){}
+	Tree(string color, int high, int diameter) :color(color), high(high) {
+		color = "";
+		this->diameter = new int(diameter);
+	}
+
+	Tree& operator= (Tree & tree){
+		cout << "Ttee 赋值开始" << endl;
+		if (diameter != NULL) {
+			delete diameter;
+			diameter = NULL;
+		}
+		this->color = tree.color;
+		this->high = tree.high;
+		this->diameter = new int(*tree.diameter);
+		return *this;
+	}
+
+	void treeShow() {
+		cout << "Tree show : color = " << color << " , high = " << high << ", diameter = " << diameter << endl;
+	}
+};
+

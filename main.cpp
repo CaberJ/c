@@ -25,6 +25,11 @@ void test12();
 void test13();
 void test14();
 void test15();
+void test16();
+void test17();
+void test18();
+void test19();
+Tree getTree();
 
 int main() {
 
@@ -273,6 +278,14 @@ int main() {
 	test14();
 	cout << "-------------------test15-----------" << endl;
 	test15();
+	cout << "-------------------test16-----------" << endl;
+	test16();
+	cout << "-------------------test17-----------" << endl;
+	test17();
+	cout << "-------------------test18-----------" << endl;
+	test18();
+	cout << "-------------------test19-----------" << endl;
+	test19();
 	cout << "------------------------------" << endl;
 	return 0;
 }
@@ -452,4 +465,66 @@ void test15() {
 	Clazz5 cla51;
 	cla51.clazz5Fun(cla31);
 
+}
+
+// 运算符重载
+// 
+Number operator+(const Number & num1, const Number & num2) {
+	Number tmp;
+	tmp.a = num1.a + num2.a;
+	tmp.b = num1.b + num2.b;
+	return tmp;
+}
+// + 重载
+void test16() {
+
+	// 成员函数重载
+	Number num1(1,0.1);
+	Number num2(2,0.2);
+	Number num3 = num1 + num2;
+	num3.show();
+
+}
+
+
+// << 重载
+//ostream& operator<<(ostream& out, Tree& tree) {
+//	out << "Tree : Tree.color:" << tree.color << ",Tree.high:" << tree.high << endl;
+//	return out;
+//}
+
+void test17() {
+	Tree tre1("green", 12);
+	//cout << tre1 << endl;
+}
+
+// ++ 重载
+void test18() {
+	// 先加后用
+	Number num2(1, 0.1);
+	Number num3 =  ++num2;
+	num3.show();
+	num2.show();
+	cout << "------" << endl;
+	// 先用后加
+	Number num1(1, 0.1);
+	Number num4 = num1++;
+	cout << "num4 地址：" << &num4 << endl;
+	num4.show();
+	num1.show();
+}
+
+// = 重载
+void test19() {
+	Tree tre1 = getTree();
+	Tree tre2;
+	tre2 = tre1;
+	tre1.treeShow();
+	tre2.treeShow();
+
+}
+
+Tree getTree() {
+	 Tree tre1("green", 1, 2);
+	 return tre1;
 }
