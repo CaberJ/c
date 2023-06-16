@@ -307,13 +307,29 @@ public:
 
 	// ++ 重载，先用后+
 	Number operator++ (int) {
-		cout <<"this:" << this << endl;
+		cout << "this:" << this << endl;
 		Number tmp = *this;
 		a++;
 		cout << "tmp:" << &tmp << endl;
 		cout << "tmp.a:" << tmp.a << endl;
 		return tmp;
 	}
+
+	// ==  重载
+	bool operator==(const Number & num) {
+		return a == num.a && b == num.b;
+	}
+
+	bool operator!=(const Number& num) {
+		if (*this == num) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+
 	
 	
 };
@@ -357,3 +373,17 @@ public:
 	}
 };
 
+// 函数调用运算符 （）  重载
+class MyAdd {
+public:
+	int operator()(int a, int b) {
+		return a + b;
+	}
+};
+
+class MyPrint {
+public:
+	void operator()(string str) {
+		cout << str << endl;
+	}
+};

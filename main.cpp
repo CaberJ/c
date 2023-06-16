@@ -30,6 +30,8 @@ void test17();
 void test18();
 void test19();
 Tree getTree();
+void test20();
+void test21();
 
 int main() {
 
@@ -286,6 +288,10 @@ int main() {
 	test18();
 	cout << "-------------------test19-----------" << endl;
 	test19();
+	cout << "-------------------test20-----------" << endl;
+	test20();
+	cout << "-------------------test21-----------" << endl;
+	test21();
 	cout << "------------------------------" << endl;
 	return 0;
 }
@@ -527,4 +533,31 @@ void test19() {
 Tree getTree() {
 	 Tree tre1("green", 1, 2);
 	 return tre1;
+}
+
+// == 重载
+void test20() {
+	Number num1(1, 0.1);
+	Number num2(1, 0.1);
+	Number num3(1, 0.2);
+
+	if (num1 == num2) {
+		cout << "== 判断：相等" << endl;
+	}
+	if (num3 != num2) 
+	{
+		cout << "== 判断：不相等" << endl;
+	}
+}
+
+// 函数调用运算符 （） 重载
+// 相当于把类的对象当作一个函数使用
+void test21() {
+	MyAdd md;
+	int a = md(2,4);
+	cout << "结果是：" << a << endl;
+	cout << "匿名对象调用结果是：" << MyAdd()(1, 2) << endl;
+	MyPrint mp;
+	mp("测试一下");
+	mp("" + MyAdd()(1, 2));
 }
